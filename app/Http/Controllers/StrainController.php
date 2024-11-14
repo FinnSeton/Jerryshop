@@ -22,7 +22,7 @@ class StrainController extends Controller
      */
     public function create()
     {
-        //
+        return view("Strains.create");
     }
 
     /**
@@ -30,7 +30,25 @@ class StrainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            "id" => "required|integer|min:0",
+            "naam" => "required|string",
+            "merk" => "required|string",
+            "soort" => "required|string",
+            "thc" => "required|integer|min:0",
+            "cbd" => "required|integer|min:0",
+            "prijs" => "required|integer|min:0",
+        ]);
+
+        strains::create([
+            "id" => $validated->strainnaam,
+            "naam" => $validated->strainnaam,
+            "merk" => $validated->strainnaam,
+            "soort" => $validated->strainnaam,
+            "thc" => $validated->strainnaam,
+            "cbd" => $validated->strainnaam,
+            "prijs" => $validated->strainnaam,
+        ]);
     }
 
     /**

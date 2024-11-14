@@ -21,3 +21,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('/strains/all', [StrainController::class, 'index']);
+
+Route::get('/strains/create', [StrainController::class, 'create'])->name('create.index');
+Route::post('/strains/store', [StrainController::class, 'store'])->name('store.index');
