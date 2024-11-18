@@ -1,22 +1,19 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.blueprint')
+
+@push('styles')
+
+@endpush
+
+@section('title')
+    Strains
+@endsection
+
+@section('content')
 <h1>Hier staan alle strains</h1>
 
-<ul>
+
     @foreach($strains as $strain)
-        <li>{{$strain->naam}} - {{$strain->merk}}</li>
+        {{$strain->naam}} - {{$strain->merk}}
     @endforeach
+@endsection
 
-</ul>
-
-
-
-
-</body>
-</html>

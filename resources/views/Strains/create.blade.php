@@ -11,13 +11,13 @@
             <label for='naam'>Vul strain naam in</label>
             <input type='text' name='naam'>
                 @error('naam')
-                    <p>Er is een error in de songs: {{$errors}}</p>
+                    <p>Er is een error in de strains: {{$errors}}</p>
                 @enderror
 
             <label for="merk">Vul het merk in van de zaza</label>
             <input type="text" name="merk">
                 @error('merk')
-                    <p>Er is een error in alles.</p>
+                    <p>Er is een error in de merken.</p>
                 @enderror
 
             <label for="soort">Vul de soort in (Sativa / Indica / Hybrid)</label>
