@@ -42,13 +42,13 @@ class StrainController extends Controller
             'prijs' => 'required|integer|min:0',
         ]);
         // dd($request);
-    
+
         // Create the new Strain record using the validated data
         Strain::create($validated);
-    
+
         // Redirect back or to the index page with a success message
         //return redirect()->route('strains.index');
-    }    
+    }
     /**
      * Display the specified resource.
      */

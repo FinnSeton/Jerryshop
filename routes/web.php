@@ -24,3 +24,4 @@ Route::get('/strains/all', [StrainController::class, 'index'])->name('strains.al
 
 Route::get('/strains/create', [StrainController::class, 'create'])->name('create.index');
 Route::post('/strains/store', [StrainController::class, 'store'])->name('store.index');
+Route::resource('strain', StrainController::class);

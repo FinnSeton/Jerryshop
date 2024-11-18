@@ -9,11 +9,17 @@
 @endsection
 
 @section('content')
+
     <h1>Hier staan alle strains</h1>
 
 
     @foreach($strains as $strain)
-        {{$strain->naam}} - {{$strain->merk}}
+        <div class="strain">
+
+            {{$strain->naam}} - {{$strain->merk}} -{{$strain->soort}} - {{$strain->thc}}% THC - {{$strain->cbd}}% CBD  - €{{$strain->prijs}}
+
+        </div>
     @endforeach
 @endsection
+
 
