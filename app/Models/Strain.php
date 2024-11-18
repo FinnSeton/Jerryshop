@@ -19,3 +19,5 @@ class Strain extends Model
         'prijs'
     ];
 }
+
+

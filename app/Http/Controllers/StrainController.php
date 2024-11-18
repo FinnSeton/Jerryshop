@@ -49,6 +49,7 @@ class StrainController extends Controller
         // Redirect back or to the index page with a success message
         //return redirect()->route('strains.index');
     }
+
     /**
      * Display the specified resource.
      */
@@ -76,8 +77,10 @@ class StrainController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Strain $strain)
+    public function delete(Strain $strain)
     {
-        // Delete logic goes here (you can implement this later)
+        Strain::destroy($strain->id);
+        return redirect()->route('strains.all')
+            ->with('success', 'Strain deleted successfully');
     }
 }
