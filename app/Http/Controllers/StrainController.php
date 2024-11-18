@@ -12,7 +12,6 @@ class StrainController extends Controller
      */
     public function index()
     {
-
         $aantalstrains = Strain::all();
         return view('strains.index', ['strains' => $aantalstrains]);
     }
@@ -22,7 +21,7 @@ class StrainController extends Controller
      */
     public function create()
     {
-        return view("Strains.create");
+        return view("strains.create");
     }
 
     /**
@@ -30,33 +29,32 @@ class StrainController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        // error_log($request);
+
+        // Validate the incoming data
         $validated = $request->validate([
-            "id" => "required|integer|min:0",
-            "naam" => "required|string",
-            "merk" => "required|string",
-            "soort" => "required|string",
-            "thc" => "required|integer|min:0",
-            "cbd" => "required|integer|min:0",
-            "prijs" => "required|integer|min:0",
+            'naam' => 'required|string',
+            'merk' => 'required|string',
+            'soort' => 'required|string',
+            'thc' => 'required|integer|min:0',
+            'cbd' => 'required|integer|min:0',
+            'prijs' => 'required|integer|min:0',
         ]);
-
-        strains::create([
-            "id" => $validated->strainnaam,
-            "naam" => $validated->strainnaam,
-            "merk" => $validated->strainnaam,
-            "soort" => $validated->strainnaam,
-            "thc" => $validated->strainnaam,
-            "cbd" => $validated->strainnaam,
-            "prijs" => $validated->strainnaam,
-        ]);
-    }
-
+        // dd($request);
+    
+        // Create the new Strain record using the validated data
+        Strain::create($validated);
+    
+        // Redirect back or to the index page with a success message
+        //return redirect()->route('strains.index');
+    }    
     /**
      * Display the specified resource.
      */
     public function show(Strain $strain)
     {
-        //
+        // Show a specific strain (you can implement this later)
     }
 
     /**
@@ -64,7 +62,7 @@ class StrainController extends Controller
      */
     public function edit(Strain $strain)
     {
-        //
+        // Show the form to edit the strain (you can implement this later)
     }
 
     /**
@@ -72,7 +70,7 @@ class StrainController extends Controller
      */
     public function update(Request $request, Strain $strain)
     {
-        //
+        // Update logic goes here (you can implement this later)
     }
 
     /**
@@ -80,6 +78,6 @@ class StrainController extends Controller
      */
     public function destroy(Strain $strain)
     {
-        //
+        // Delete logic goes here (you can implement this later)
     }
 }

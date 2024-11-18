@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('thc');
             $table->integer('cbd');
             $table->integer('prijs');
+            $table->timestamps();
         });
     }
 
