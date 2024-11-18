@@ -1,4 +1,4 @@
-@extends('layouts.blueprint')
+@extends('layouts.dashboardblueprint')
 
 @push('styles')
 
@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<h1>Hier staan alle strains</h1>
+    <h1>Hier staan alle strains</h1>
 
 
     @foreach($strains as $strain)

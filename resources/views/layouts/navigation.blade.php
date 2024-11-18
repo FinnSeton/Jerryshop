@@ -22,6 +22,12 @@
                         {{ __('Create Strains') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('strains.all')" :active="request()->routeIs('strains.all')">
+                        {{ __('Show Strains') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
