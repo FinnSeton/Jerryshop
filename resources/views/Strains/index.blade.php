@@ -19,7 +19,7 @@
             {{$strain->naam}} - {{$strain->merk}} -{{$strain->soort}} - {{$strain->thc}}% THC - {{$strain->cbd}}% CBD  - €{{$strain->prijs}}
 
             @foreach($strain->joints as $joint)
-                {{$joint->naam}}
+                {{$joint->id}}
                 -
             @endforeach
 
