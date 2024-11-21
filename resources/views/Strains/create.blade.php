@@ -1,49 +1,54 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.dashboardblueprint')
+
+@push('styles')
+
+@endpush
+
+@section('title')
+    Create Strains
+@endsection
+
+@section('content')
 
     <div class="straininpbox">
-        <form action='/strains/store' method='POST'>
+        <form class="mt-5 flex flex-col container mx-auto sm" action='/strains/store' method='POST'>
             @csrf
-            <label for='naam'>Vul strain naam in</label>
+            <label class="text-white" for='naam'>Vul strain naam in</label>
             <input type='text' name='naam'>
                 @error('naam')
-                    <p>Er is een error in de strains: {{$errors}}</p>
+                    <p class="text-red">Er is een error in de strains: {{$errors}}</p>
                 @enderror
 
-            <label for="merk">Vul het merk in van de zaza</label>
+            <label class="text-white" for="merk">Vul het merk in van de zaza</label>
             <input type="text" name="merk">
                 @error('merk')
-                    <p>Er is een error in de merken.</p>
+                    <p class="text-red">Er is een error in de merken.</p>
                 @enderror
 
-            <label for="soort">Vul de soort in (Sativa / Indica / Hybrid)</label>
+            <label class="text-white" for="soort">Vul de soort in (Sativa / Indica / Hybrid)</label>
             <input type="text" name="soort">
                 @error('soort')
-                    <p>Er is een error in alles.</p>
+                    <p class="text-red">Er is een error in alles.</p>
                 @enderror
 
-            <label for="thc">Vul het THC-gehalte van die kk wietje in</label>
+            <label class="text-white" for="thc">Vul het THC-gehalte van die kk wietje in</label>
             <input type="text" name="thc">
                 @error('thc')
-                    <p>Er is een error in alles.</p>
+                    <p class="text-red">Er is een error in alles.</p>
                 @enderror
 
-            <label for="cbd">Vul het CBD-gehalte van die kk wietje in</label>
+            <label class="text-white" for="cbd">Vul het CBD-gehalte van die kk wietje in</label>
             <input type="text" name="cbd">
                 @error('cbd')
-                    <p>Er is een error in alles.</p>
+                    <p class="text-red">Er is een error in alles.</p>
                 @enderror
 
-            <label for="prijs">Vul de prijs in.</label>
+            <label class="text-white" for="prijs">Vul de prijs in.</label>
             <input type="text" name="prijs">
                 @error('prijs')
-                    <p>Er is een error in alles.</p>
+                    <p class="text-red">Er is een error in alles.</p>
                 @enderror
-            <input type='submit'>
+            <input class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black" type='submit'>
         </form>
     </div>
-</x-app-layout>
+@endsection

@@ -5,5 +5,7 @@
         </h2>
     </x-slot>
 
+    <div class="straininpbox">
 
+    </div>
 </x-app-layout>
