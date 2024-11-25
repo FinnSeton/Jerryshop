@@ -37,15 +37,9 @@ Hier staan alle Strains
                 <div id="joint-form-{{$strain->id}}" class="joint-form mt-3">
                     <form class="mt-5 flex flex-col container mx-auto sm" action='/joints/store' method='POST'>
                         @csrf
-                        <label class="text-white" for='strain_id'>Vul strain id in</label>
-                        <input type='text' name='strain_id' value="{{$strain->id}}" readonly>
-
-                        @error('strain_id')
-                            <p class="text-red">Er is een error in de strains: {{$errors}}</p>
-                        @enderror
-
+                        <input type='hidden' class="text-black" name='strain_id' value="{{$strain->id}}" readonly>
                         <label class="text-white" for="prijs">Vul het prijs in van de zaza</label>
-                        <input type="text" name="prijs">
+                        <input type="text" class="text-black" name="prijs">
                         @error('prijs')
                             <p class="text-red">Er is een error in de merken.</p>
                         @enderror
