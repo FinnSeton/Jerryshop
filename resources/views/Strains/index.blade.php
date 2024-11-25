@@ -5,13 +5,12 @@
 @endpush
 
 @section('title')
-    Strains
+    Hier staan alle Strains
 @endsection
 
 @section('content')
-    <div class="container border-2 rounded border-blue-600 mx-auto sm bg-gray-800 text-white">
-        <h1 class="ml-5 text-2xl">Hier staan alle strains</h1>
-
+    <div class="container rounded  mx-auto w-1/2 sm bg-gray-800 text-white">
+        
         <div class="m-1 p-0.5">
             @foreach($strains as $strain)
                 <div class="p-2 mb-2 bg-gray-600 strain">

@@ -28,8 +28,6 @@
 
 
 
-<footer>&copy; Cas Euser - DVC</footer>
-
 
 @stack('scripts')
 </body>

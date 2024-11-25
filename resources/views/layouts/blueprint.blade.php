@@ -18,7 +18,6 @@
 @yield('content')
 
 
-<footer>&copy; Cas Euser - DVC</footer>
 
 
 @stack('scripts')
