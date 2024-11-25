@@ -22,6 +22,8 @@ class Strain extends Model
         'cbd',
         'prijs'
     ];
+
+    
 }
 
 
