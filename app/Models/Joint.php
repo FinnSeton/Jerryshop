@@ -11,7 +11,10 @@ class Joint extends Model
         return $this->belongsTo(Strain::class);
     }
 
-
+    protected $fillable = [
+        'strain_id',
+        'prijs'
+    ];
 }
 
 
