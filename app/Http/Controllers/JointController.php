@@ -52,14 +52,23 @@ class JointController extends Controller
      */
     public function update(Request $request, Joint $joint)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
+        $post = Joint::find($joint);
+        $post->update($request->all());
+        return redirect()->route('strains.all')
+            ->with('success', 'Strain updated successfully.');
     }
+        //
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Joint $joint)
     {
-        //
+
     }
 }
