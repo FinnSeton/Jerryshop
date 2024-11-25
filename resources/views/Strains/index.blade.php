@@ -21,39 +21,43 @@ Hier staan alle Strains
                     {{$strain->cbd}}% CBD - €{{$strain->prijs}}
                 </p>
 
-                <form method="POST" action="/strains/delete/{{$strain->id}}">
-                    @csrf
-                    @method('DELETE')
-                    <button method="POST" action="/strains/delete/{{$strain->id}}" type="submit"
-                        class="border pr-2 pl-2 rounded border-red-500">Delete</button>
-                </form>
+                <div class="buttoncontainer flex" >
+                    <form class="" method="POST" action="/strains/delete/{{$strain->id}}">
+                        @csrf
+                        @method('DELETE')
+                        <button method="POST" action="/strains/delete/{{$strain->id}}" type="submit"
+                            class="border pr-2 pl-2 rounded border-red-500">Delete</button>    
+                    </form>
 
 
-                <button id="make-joint-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-green-500" onclick=" toggleJointForm({{$strain->id}})">
-                    Make Joint
-                </button>
+                    <button id="make-joint-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-green-500" onclick=" toggleJointForm({{$strain->id}})">
+                        Make Joint
+                    </button>
 
-                <!-- Joint Form for creating a new joint -->
+                </div>
+
                 <div id="joint-form-{{$strain->id}}" class="joint-form mt-3">
                     <form class="mt-5 flex flex-col container mx-auto sm" action='/joints/store' method='POST'>
                         @csrf
                         <input type='hidden' class="text-black" name='strain_id' value="{{$strain->id}}" readonly>
+
                         <label class="text-white" for="prijs">Vul het prijs in van de zaza</label>
                         <input type="text" class="text-black" name="prijs">
-                        @error('prijs')
-                            <p class="text-red">Er is een error in de merken.</p>
-                        @enderror
-
-                        <input
-                            class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black"
-                            type='submit'>
+                        
+                        <input class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black" type='submit'>
                     </form>
                 </div>
             </div>
 
             @foreach($strain->joints as $joint)
-                <div class="p-2 ml-15 mb-2 bg-gray-600 strain">
-                    <p class="font-bold">{{$joint->strain_id}} id - {{$joint->prijs}} prijs</p>
+                <div class="p-2 ml-2  mb-2 bg-gray-600 joint">
+                    <p class="font-bold">{{$strain->naam}} Joint -  ${{$joint->prijs}}</p>
+                    <form class="" method="POST" action="/joints/delete/{{$joint->id}}">
+                        @csrf
+                        @method('DELETE')
+                        <button method="POST" action="/joints/delete/{{$joint->id}}" type="submit"
+                            class="border pr-2 pl-2 rounded border-red-500">Delete</button>    
+                    </form>
                 </div>
             @endforeach
         @endforeach

@@ -78,8 +78,9 @@ class JointController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Joint $joint)
+    public function delete(Joint $joint)
     {
-
+        Joint::destroy($joint->id);
+        return redirect()->route('strains.all');
     }
 }
