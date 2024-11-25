@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JointController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrainController;
 use Illuminate\Support\Facades\Route;
@@ -24,5 +25,6 @@ Route::get('/strains/all', [StrainController::class, 'index'])->name('strains.al
 
 Route::get('/strains/create', [StrainController::class, 'create'])->name('create.index');
 Route::post('/strains/store', [StrainController::class, 'store'])->name('store.index');
+Route::post('/joints/store', [JointController::class, 'store'])->name('store.index');
 Route::resource('strain', StrainController::class);
 Route::delete('/strains/delete/{strain}', [StrainController::class, 'delete'])->name('strain.delete');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Joint;
+use App\Models\Strain;
 use Illuminate\Http\Request;
 
 class JointController extends Controller
@@ -20,7 +21,7 @@ class JointController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -28,7 +29,17 @@ class JointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming data
+        $validated = $request->validate([
+            'strain_id' => 'required|string',
+            'prijs' => 'required|integer|min:0',
+        ]);
+
+        // Create the new Strain record using the validated data
+        Joint::create($validated);
+
+        // Redirect back or to the index page with a success message
+        return redirect()->route('strains.all');
     }
 
     /**
@@ -53,8 +64,8 @@ class JointController extends Controller
     public function update(Request $request, Joint $joint)
     {
         $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
+            'naam' => 'required|max:255',
+            'strain_id' => 'required',
         ]);
         $post = Joint::find($joint);
         $post->update($request->all());

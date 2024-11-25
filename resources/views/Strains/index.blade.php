@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container rounded  mx-auto w-1/2 sm bg-gray-800 text-white">
-        
+
         <div class="m-1 p-0.5">
             @foreach($strains as $strain)
                 <div class="p-2 mb-2 bg-gray-600 strain">
@@ -19,6 +19,7 @@
                         @csrf
                         @method('DELETE')
                         <button method="POST" action="/strains/delete/{{$strain->id}}" type="submit" class="border pr-2 pl-2 rounded border-red-500">Delete</button>
+                        <button method="POST" action="/joints/store" type="submit" class="border pr-2 pl-2 rounded border-green-500">Make joint</button>
                     </form>
 
                     @foreach($strain->joints as $joint)
