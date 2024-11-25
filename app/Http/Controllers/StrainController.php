@@ -27,9 +27,6 @@ class StrainController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        // error_log($request);
-
         // Validate the incoming data
         $validated = $request->validate([
             'naam' => 'required|string',
@@ -39,14 +36,14 @@ class StrainController extends Controller
             'cbd' => 'required|integer|min:0',
             'prijs' => 'required|integer|min:0',
         ]);
-        // dd($request);
-
+    
         // Create the new Strain record using the validated data
         Strain::create($validated);
-
+    
         // Redirect back or to the index page with a success message
-        //return redirect()->route('strains.index');
+        return redirect()->route('strains.all');
     }
+    
 
     /**
      * Display the specified resource.
@@ -78,7 +75,6 @@ class StrainController extends Controller
     public function delete(Strain $strain)
     {
         Strain::destroy($strain->id);
-        return redirect()->route('strains.all')
-            ->with('success', 'Strain deleted successfully');
+        return redirect()->route('strains.all');
     }
 }
