@@ -50,7 +50,7 @@ Hier staan alle Strains
                 </div>
 
                 @foreach($strain->joints as $joint)
-                    <div class="p-2 ml-2  mb-2 bg-gray-600 joint">
+                    <div class="p-2 mb-2 bg-gray-600 joint">
                         <p class="font-bold">{{$strain->naam}} Joint -  €{{$joint->prijs}}</p>
                         <form class="" method="POST" action="/joints/delete/{{$joint->id}}">
                             @csrf
