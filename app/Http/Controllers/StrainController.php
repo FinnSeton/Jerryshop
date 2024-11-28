@@ -7,27 +7,19 @@ use Illuminate\Http\Request;
 
 class StrainController extends Controller
 {
-
     public function index()
     {
         $aantalstrains = Strain::all();
         return view('strains.index', ['strains' => $aantalstrains]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view("strains.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // Validate the incoming data
         $validated = $request->validate([
             'naam' => 'required|string',
             'merk' => 'required|string',
@@ -37,46 +29,58 @@ class StrainController extends Controller
             'prijs' => 'required|integer|min:0',
         ]);
 
-        // Create the new Strain record using the validated data
         Strain::create($validated);
 
-        // Redirect back or to the index page with a success message
-        return redirect()->route('strains.all');
+        return redirect()->route('strains.all')->with('success', 'Strain created successfully.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Strain $strain)
     {
-        // Show a specific strain (you can implement this later)
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
-        $post = Strain::find($id);
-        return view('strain.edit', compact('post'));
+        $strain = Strain::find($id);
+
+        if (!$strain) {
+            return redirect()->route('strains.all')->with('error', 'Strain not found.');
+        }
+
+        return view('strains.edit', compact('strain'));
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Strain $strain)
+    public function update(Request $request, $id)
     {
-        // Update logic goes here (you can implement this later)
+        $strain = Strain::find($id);
+
+        if (!$strain) {
+            return redirect()->route('strains.all')->with('error', 'Strain not found.');
+        }
+
+        $validated = $request->validate([
+            'naam' => 'required|string',
+            'merk' => 'required|string',
+            'soort' => 'required|string',
+            'thc' => 'required|integer|min:0',
+            'cbd' => 'required|integer|min:0',
+            'prijs' => 'required|integer|min:0',
+        ]);
+
+        $strain->update($validated);
+
+        return redirect()->route('strains.all')->with('success', 'Strain updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function delete(Strain $strain)
+    public function delete($id)
     {
-        Strain::destroy($strain->id);
-        return redirect()->route('strains.all');
+        $strain = Strain::find($id);
+
+        if (!$strain) {
+            return redirect()->route('strains.all')->with('error', 'Strain not found.');
+        }
+
+        $strain->delete();
+
+        return redirect()->route('strains.all')->with('success', 'Strain deleted successfully.');
     }
 }

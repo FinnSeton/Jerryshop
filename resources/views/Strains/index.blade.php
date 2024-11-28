@@ -21,7 +21,7 @@ Hier staan alle Strains
                         {{$strain->cbd}}% CBD - €{{$strain->prijs}}
                     </p>
 
-                    <div class="buttoncontainer flex" >
+                    <div class="buttoncontainer flex">
                         <form class="" method="POST" action="/strains/delete/{{$strain->id}}">
                             @csrf
                             @method('DELETE')
@@ -30,7 +30,8 @@ Hier staan alle Strains
                         </form>
 
 
-                        <button id="make-joint-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-green-500" onclick=" toggleJointForm({{$strain->id}})">
+                        <button id="make-joint-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-green-500"
+                            onclick=" toggleJointForm({{$strain->id}})">
                             Make Joint
                         </button>
 
@@ -38,18 +39,15 @@ Hier staan alle Strains
 
                     <div class="editForm">
 
-                        <form class="mt-5 flex flex-col container mx-auto sm" action="{{ route('$strain.edit', $strain->id) }}" method="post">
+                        <form class="mt-5 flex flex-col container mx-auto sm" action="/strain/edit/{{$strain->id}}"
+                            method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="naam">Strain</label>
-                                <input type="text" class="form-control" id="naam" name="naam"
-                                       value="{{ $strain->name }}" required>
+                                <input type="text" class="text-black" id="naam" name="naam" value="{{ $strain->naam }}">
                             </div>
-                            <div class="form-group">
-                                <label for="body">Body</label>
-                                <textarea class="form-control" id="body" name="body" rows="3" required>{{ $post->body }}</textarea>
-                            </div>
+
                             <button type="submit" class="btn mt-3 btn-primary">Update Post</button>
                         </form>
 
@@ -62,14 +60,16 @@ Hier staan alle Strains
                             <label class="text-white" for="prijs">Vul het prijs in van de zaza</label>
                             <input type="text" class="text-black" name="prijs">
 
-                            <input class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black" type='submit'>
+                            <input
+                                class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black"
+                                type='submit'>
                         </form>
                     </div>
                 </div>
 
                 @foreach($strain->joints as $joint)
                     <div class="p-2 mb-2 bg-gray-600 joint">
-                        <p class="font-bold">{{$strain->naam}} Joint -  €{{$joint->prijs}}</p>
+                        <p class="font-bold">{{$strain->naam}} Joint - €{{$joint->prijs}}</p>
                         <form class="" method="POST" action="/joints/delete/{{$joint->id}}">
                             @csrf
                             @method('DELETE')
@@ -87,18 +87,17 @@ Hier staan alle Strains
 
 @push('scripts')
     <script>
-        // Toggle visibility of joint form
         function toggleJointForm(strainId) {
             var form = document.getElementById('joint-form-' + strainId);
             var button = document.getElementById('make-joint-button-' + strainId);
 
-            // Toggle form visibility
+
             if (form.style.display === 'none' || form.style.display === '') {
                 form.style.display = 'block';
-                button.innerText = 'Hide Joint Form'; // Change button text when form is shown
+                button.innerText = 'Hide Joint Form';
             } else {
                 form.style.display = 'none';
-                button.innerText = 'Make Joint'; // Change button text when form is hidden
+                button.innerText = 'Make Joint';
             }
         }
     </script>
