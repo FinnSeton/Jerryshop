@@ -26,7 +26,7 @@ Hier staan alle Strains
                             @csrf
                             @method('DELETE')
                             <button method="POST" action="/strains/delete/{{$strain->id}}" type="submit"
-                                class="border pr-2 pl-2 rounded border-red-500">Delete</button>    
+                                class="border pr-2 pl-2 rounded border-red-500">Delete</button>
                         </form>
 
 
@@ -36,6 +36,24 @@ Hier staan alle Strains
 
                     </div>
 
+                    <div class="editForm">
+
+                        <form class="mt-5 flex flex-col container mx-auto sm" action="{{ route('$strain.edit', $strain->id) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                <label for="naam">Strain</label>
+                                <input type="text" class="form-control" id="naam" name="naam"
+                                       value="{{ $strain->name }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="body">Body</label>
+                                <textarea class="form-control" id="body" name="body" rows="3" required>{{ $post->body }}</textarea>
+                            </div>
+                            <button type="submit" class="btn mt-3 btn-primary">Update Post</button>
+                        </form>
+
+                    </div>
                     <div id="joint-form-{{$strain->id}}" class="joint-form mt-3">
                         <form class="mt-5 flex flex-col container mx-auto sm" action='/joints/store' method='POST'>
                             @csrf
@@ -43,7 +61,7 @@ Hier staan alle Strains
 
                             <label class="text-white" for="prijs">Vul het prijs in van de zaza</label>
                             <input type="text" class="text-black" name="prijs">
-                            
+
                             <input class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black" type='submit'>
                         </form>
                     </div>
@@ -56,13 +74,14 @@ Hier staan alle Strains
                             @csrf
                             @method('DELETE')
                             <button method="POST" action="/joints/delete/{{$joint->id}}" type="submit"
-                                class="border pr-2 pl-2 rounded border-red-500">Delete</button>    
+                                class="border pr-2 pl-2 rounded border-red-500">Delete</button>
                         </form>
                     </div>
                 @endforeach
             @endforeach
         </div>
     </div>
+
 
 @endsection
 

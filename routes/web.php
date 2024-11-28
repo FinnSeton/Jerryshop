@@ -29,3 +29,5 @@ Route::resource('strain', StrainController::class);
 Route::delete('/strains/delete/{strain}', [StrainController::class, 'delete'])->name('strain.delete');
 Route::post('/joints/store', [JointController::class, 'store'])->name('store.index');
 Route::delete('/joints/delete/{joint}', [JointController::class, 'delete'])->name('joint.delete');
+Route::get('/strain/{strain}/edit', StrainController::class .'@edit')->name('strain.edit');
+

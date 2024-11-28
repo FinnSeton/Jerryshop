@@ -36,14 +36,14 @@ class StrainController extends Controller
             'cbd' => 'required|integer|min:0',
             'prijs' => 'required|integer|min:0',
         ]);
-    
+
         // Create the new Strain record using the validated data
         Strain::create($validated);
-    
+
         // Redirect back or to the index page with a success message
         return redirect()->route('strains.all');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -56,10 +56,12 @@ class StrainController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Strain $strain)
+    public function edit($id)
     {
-        // Show the form to edit the strain (you can implement this later)
+        $post = Strain::find($id);
+        return view('strain.edit', compact('post'));
     }
+
 
     /**
      * Update the specified resource in storage.
