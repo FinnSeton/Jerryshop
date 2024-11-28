@@ -12,7 +12,7 @@
 @endpush
 
 @section('title')
-    Hier staan alle Strains
+    Hier staan alle Strains 
 @endsection
 
 @section('content')

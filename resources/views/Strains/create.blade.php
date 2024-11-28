@@ -40,7 +40,7 @@
             <label class="text-white" for="cbd">Vul het CBD-gehalte van de wiet in</label>
             <input type="text" name="cbd">
                 @error('cbd')
-                    <p class="text-red">Ongeldige invoer.</p>
+                    <p class="text-red">Ongeldige invoer voor Cbd.</p>
                 @enderror
 
             <label class="text-white" for="prijs">Vul de prijs in.</label>
