@@ -16,8 +16,8 @@
 @endsection
 
 @section('content')
-    <div class="container rounded mx-auto w-1/2 sm bg-gray-800 text-white">
-        <div class="m-1 p-0.5">
+    <div class="container rounded mx-auto w-1/2 sm  bg-gray-800 text-white">
+        <div class="p-2">
             @foreach($strains as $strain)
                 <div class="p-2 mb-2 bg-gray-600 strain">
                     <p class="font-bold">{{$strain->naam}} - {{$strain->merk}} - {{$strain->soort}} - {{$strain->thc}}% THC - {{$strain->cbd}}% CBD - €{{$strain->prijs}}</p>
@@ -26,10 +26,10 @@
                         <form method="POST" action="/strains/delete/{{$strain->id}}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="border pr-2 pl-2 rounded border-red-500">Delete</button>
+                            <button type="submit" class="border pr-2 pl-2 mr-2 rounded border-red-500">Delete</button>
                         </form>
 
-                        <button id="make-joint-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-green-500"
+                        <button id="make-joint-button-{{$strain->id}}" class="border pr-2 pl-2 mr-2 rounded border-green-500"
                             onclick="toggleJointForm({{$strain->id}})">
                             Make Joint
                         </button>
@@ -63,7 +63,7 @@
                             <label for="prijs" class="text-white">Price (€)</label>
                             <input type="number" class="text-black" name="prijs" value="{{ $strain->prijs }}" min="0" required>
 
-                            <button type="submit" class="btn mt-3 btn-primary">Update Strain</button>
+                            <button type="submit" class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black">Update Strain</button>
                         </form>
                     </div>
 
@@ -103,7 +103,7 @@
 
             if (form.style.display === 'none' || form.style.display === '') {
                 form.style.display = 'block';
-                button.innerText = 'Hide Joint Form';
+                button.innerText = 'Hide Joint';
             } else {
                 form.style.display = 'none';
                 button.innerText = 'Make Joint';
@@ -116,7 +116,7 @@
 
             if (form.style.display === 'none' || form.style.display === '') {
                 form.style.display = 'block';
-                button.innerText = 'Hide Edit Form';
+                button.innerText = 'Hide Strains';
             } else {
                 form.style.display = 'none';
                 button.innerText = 'Edit Strain';
