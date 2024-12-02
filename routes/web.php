@@ -30,5 +30,4 @@ Route::delete('/strains/delete/{strain}', [StrainController::class, 'delete'])->
 Route::post('/joints/store', [JointController::class, 'store'])->name('joint.store');
 Route::delete('/joints/delete/{joint}', [JointController::class, 'delete'])->name('joint.delete');
 Route::put('/strain/edit/{id}', [StrainController::class, 'update'])->name('strain.update');
-Route::put('/joint/edit/{id}', [JointController::class, 'update'])->name('joint.update');
-
+Route::put('/joint/update/{id}', [JointController::class, 'update'])->name('joint.update');

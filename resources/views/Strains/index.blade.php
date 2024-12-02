@@ -89,16 +89,18 @@
                 @foreach($strain->joints as $joint)
                     <div class="p-2 mb-2 bg-gray-600 joint">
                         <p class="font-bold">{{$strain->naam}} Joint - €{{$joint->prijs}}</p>
-                        <form method="POST" action="/joints/delete/{{$joint->id}}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="border pr-2 pl-2 rounded border-red-500">Delete</button>
 
-                        <button id="edit-joint-button-{{$joint->id}}" class="border pr-2 pl-2 rounded border-blue-500"
-                                onclick="toggleEditJointForm({{$joint->id}})">
-                            Edit Joint
-                        </button>
-                        </form>
+                        <div class="buttoncontainer flex">
+                            <form method="POST" action="/joints/delete/{{$joint->id}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="border pr-2 pl-2 rounded border-red-500">Delete</button>
+                            </form>
+                            <button id="edit-joint-button-{{$joint->id}}" class="border pr-2 pl-2 rounded border-blue-500"
+                                    onclick="toggleEditJointForm({{$joint->id}})">
+                                Edit Joint
+                            </button>
+                        </div>
                         <div id="edit-joint-form-{{$joint->id}}" class="edit-joint-form mt-3">
                             <form class="mt-5 flex flex-col container mx-auto sm" action="/joint/update/{{$joint->id}}" method="POST">
                                 @csrf

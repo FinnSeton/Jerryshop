@@ -67,17 +67,22 @@ class JointController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Joint $joint)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'naam' => 'required|max:255',
-            'strain_id' => 'required',
+        $joint = Joint::find($id);
+
+        if (!$joint) {
+            return redirect()->route('strains.all')->with('error', 'Joint not found.');
+        }
+
+        $validated = $request->validate([
+            'prijs' => 'required|integer|min:0'
         ]);
-        $post = Joint::find($joint);
-        $post->update($request->all());
-        return redirect()->route('strains.all')
-            ->with('success', 'Strain updated successfully.');
+        $joint->update($validated);
+
+        return redirect()->route('strains.all')->with('success', 'Joint updated successfully.');
     }
+
         //
 
 
