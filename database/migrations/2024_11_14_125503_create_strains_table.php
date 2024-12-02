@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('soort');
             $table->integer('thc');
             $table->integer('cbd');
-            $table->integer('prijs');
+            $table->float('prijs');
             $table->timestamps();
         });
     }
