@@ -67,7 +67,7 @@
                             <input type="number" class="text-black" name="cbd" value="{{ $strain->cbd }}" min="0" required>
 
                             <label for="prijs" class="text-white">Price (€)</label>
-                            <input type="number" class="text-black" name="prijs" value="{{ $strain->prijs }}" min="0" required>
+                            <input type="text" class="text-black" name="prijs" value="{{ $strain->prijs }}" min="0" required>
 
                             <button type="submit" class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black">Update Strain</button>
                         </form>
