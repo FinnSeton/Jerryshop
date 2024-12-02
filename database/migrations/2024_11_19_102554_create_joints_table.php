@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('joints', function (Blueprint $table) {
             $table->id();
             $table->foreignId('strain_id')->constrained()->onDelete('cascade');
-            $table->integer('prijs');
+            $table->float('prijs');
             $table->timestamps();
         });
     }
