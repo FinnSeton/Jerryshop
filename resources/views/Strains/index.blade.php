@@ -106,7 +106,7 @@
                             <form class="mt-5 flex flex-col container mx-auto sm" action="/joint/update/{{$joint->id}}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <label for="prijs" class="text-white">Price (€)</label>
+                                <label for="prijs" value="{{ $joint->prijs }} class="text-white">Price (€)</label>
                                 <input type="text" class="text-black" name="prijs" value="{{ $joint->prijs }}" min="0" required>
 
                                 <button type="submit" class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black">Update Joint</button>
