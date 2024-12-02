@@ -12,7 +12,7 @@
 @endpush
 
 @section('title')
-    Hier staan alle Strains 
+    Hier staan alle Strains
 @endsection
 
 @section('content')
@@ -33,6 +33,8 @@
                             onclick="toggleJointForm({{$strain->id}})">
                             Make Joint
                         </button>
+
+
 
                         <button id="edit-strain-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-blue-500"
                             onclick="toggleEditForm({{$strain->id}})">
@@ -88,6 +90,21 @@
                             @method('DELETE')
                             <button type="submit" class="border pr-2 pl-2 rounded border-red-500">Delete</button>
                         </form>
+                        <button id="edit-joint-button-{{$joint->id}}" class="border pr-2 pl-2 rounded border-blue-500"
+                                onclick="toggleEditJointForm({{$joint->id}})">
+                            Edit Joint
+                        </button>
+                        <div id="edit-joint-form-{{$joint->id}}" class="edit-joint-form mt-3">
+                            <form class="mt-5 flex flex-col container mx-auto sm" action="/joint/update/{{$joint->id}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <label for="prijs" class="text-white">Price (€)</label>
+                                <input type="number" class="text-black" name="prijs" value="{{ $joint->prijs }}" min="0" required>
+
+                                <button type="submit" class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black">Update Joint</button>
+                            </form>
+                        </div>
+
                     </div>
                 @endforeach
             @endforeach
@@ -120,6 +137,19 @@
             } else {
                 form.style.display = 'none';
                 button.innerText = 'Edit Strain';
+            }
+        }
+
+        function toggleEditJointForm(jointId) {
+            var form = document.getElementById('edit-joint-form-' + jointId);
+            var button = document.getElementById('edit-joint-button-' + jointId);
+
+            if (form.style.display === 'none' || form.style.display === '') {
+                form.style.display = 'block';
+                button.innerText = 'Hide Joints';
+            } else {
+                form.style.display = 'none';
+                button.innerText = 'Edit Joint';
             }
         }
     </script>

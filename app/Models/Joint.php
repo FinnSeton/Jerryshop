@@ -13,6 +13,7 @@ class Joint extends Model
 
     protected $fillable = [
         'strain_id',
+        'gram',
         'prijs'
     ];
 }

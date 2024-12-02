@@ -53,9 +53,15 @@ class JointController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Joint $joint)
+    public function edit($id)
     {
-        //
+        $joint = Joint::find($id);
+
+        if (!$joint) {
+            return redirect()->route('strains.all')->with('error', 'Joint not found.');
+        }
+
+        return view('strain.edit', compact('joint'));
     }
 
     /**

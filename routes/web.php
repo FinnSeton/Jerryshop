@@ -27,7 +27,8 @@ Route::get('/strains/create', [StrainController::class, 'create'])->name('create
 Route::post('/strains/store', [StrainController::class, 'store'])->name('store.index');
 Route::resource('strain', StrainController::class);
 Route::delete('/strains/delete/{strain}', [StrainController::class, 'delete'])->name('strain.delete');
-Route::post('/joints/store', [JointController::class, 'store'])->name('jointstore.index');
+Route::post('/joints/store', [JointController::class, 'store'])->name('joint.store');
 Route::delete('/joints/delete/{joint}', [JointController::class, 'delete'])->name('joint.delete');
-Route::put('/strain/edit/{id}', [StrainController::class, 'update']);
+Route::put('/strain/edit/{id}', [StrainController::class, 'update'])->name('strain.update');
+Route::put('/joint/edit/{id}', [JointController::class, 'update'])->name('joint.update');
 
