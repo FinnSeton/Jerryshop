@@ -26,7 +26,7 @@ class StrainController extends Controller
             'soort' => 'required|string',
             'thc' => 'required|integer|min:0',
             'cbd' => 'required|integer|min:0',
-            'prijs' => 'required|integer|min:0',
+            'prijs' => 'required|float|min:0',
         ]);
 
         Strain::create($validated);

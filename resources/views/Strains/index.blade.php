@@ -94,8 +94,9 @@
                             <form method="POST" action="/joints/delete/{{$joint->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="border pr-2 pl-2 rounded border-red-500">Delete</button>
+                                <button type="submit" class="border pr-2 pl-2 mr-2 rounded border-red-500">Delete</button>
                             </form>
+
                             <button id="edit-joint-button-{{$joint->id}}" class="border pr-2 pl-2 rounded border-blue-500"
                                     onclick="toggleEditJointForm({{$joint->id}})">
                                 Edit Joint
