@@ -17,12 +17,12 @@ class StrainFactory extends Factory
     public function definition(): array
     {
         return [
-            "naam" => fake()->name,
-            "soort" => "Hybrid",
-            "thc" => fake()->biasedNumberBetween(0,30),
-            "cbd" => 0,
-            "merk" => "Candelaar",
-            "prijs" => fake()->biasedNumberBetween(5,30),
+            "naam" => $this->faker->lastName() . ' ' . $this->faker->randomElement(['Haze', 'Skunk', 'Kush', 'OG', '', '', '']) ,
+            "soort" => $this->faker->randomElement(['Sativa', 'Indica', 'Hybrid']),
+            "thc" => $this->faker->numberBetween(10, 30),
+            "cbd" => $this->faker->randomFloat(2, 0, 5),
+            "merk" => $this->faker->randomElement(['Candelaar', 'Homegrown']),
+            "prijs" => $this->faker->randomFloat(2, 5, 15),
         ];
     }
 }

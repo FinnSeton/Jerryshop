@@ -33,6 +33,7 @@ class JointController extends Controller
         $validated = $request->validate([
             'strain_id' => 'required|string',
             'prijs' => 'required|numeric|min:0',
+            'gram' => 'required|numeric|min:0',
         ]);
 
         // Create the new Strain record using the validated data
@@ -76,7 +77,8 @@ class JointController extends Controller
         }
 
         $validated = $request->validate([
-            'prijs' => 'required|numeric|min:0'
+            'prijs' => 'required|numeric|min:0',
+            'gram' => 'required|numeric|min:0'
         ]);
         $joint->update($validated);
 

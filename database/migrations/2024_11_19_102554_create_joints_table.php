@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('strain_id')->constrained()->onDelete('cascade');
             $table->decimal('prijs');
+            $table->decimal('gram');
             $table->timestamps();
         });
     }

@@ -1,11 +1,22 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.dashboardblueprint')
 
-    <div class="straininpbox">
+@push('styles')
+
+@endpush
+
+@section('title')
+    Dashboard
+@endsection
+
+@section('content')
+
+    <div class="dashboard rounded mx-auto w-1/2 bg-gray-800 text-white " >
+        <div class="bg-gray-800">
+            <p>adas</p>
+        </div>
+
 
     </div>
-</x-app-layout>
+
+
+@endsection

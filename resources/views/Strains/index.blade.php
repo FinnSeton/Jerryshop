@@ -20,10 +20,10 @@
 @endsection
 
 @section('content')
-    <div class="container rounded mx-auto w-1/2 sm  bg-gray-800 text-white">
+    <div class="container rounded mx-auto w-5/6 m-5 bg-gray-800 text-white">
         <div class="p-2">
             @foreach($strains as $strain)
-                <div class="p-2 mb-2 bg-gray-600 strain">
+                <div class="p-2 mb-2 bg-gray-600 hover:bg-gray-700 strain">
                     <p class="font-bold">{{$strain->naam}} - {{$strain->merk}} - {{$strain->soort}} - {{$strain->thc}}% THC - {{$strain->cbd}}% CBD - €{{$strain->prijs}}</p>
 
                     <div class="buttoncontainer flex">
@@ -78,8 +78,11 @@
                             @csrf
                             <input type='hidden' name='strain_id' value="{{$strain->id}}" readonly>
 
-                            <label class="text-white" for="prijs">Vul het prijs in van de zaza</label>
+                            <label class="text-white" for="prijs">Vul het prijs in van de joint</label>
                             <input type="text" class="text-black" name="prijs">
+
+                            <label class="text-white" for="gram">Vul in hvl G er in de joint zit</label>
+                            <input type="text" class="text-black" name="gram">
 
                             <input class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black" type='submit'>
                         </form>
@@ -87,8 +90,8 @@
                 </div>
 
                 @foreach($strain->joints as $joint)
-                    <div class="p-2 mb-2 bg-gray-600 joint">
-                        <p class="font-bold">{{$strain->naam}} Joint - €{{$joint->prijs}}</p>
+                    <div class="p-2 ml-2 mb-2 bg-gray-600 hover:bg-gray-700 joint">
+                        <p class="font-bold">{{$strain->naam}} Joint - {{$joint->gram}} Gram - €{{$joint->prijs}}</p>
 
                         <div class="buttoncontainer flex">
                             <form method="POST" action="/joints/delete/{{$joint->id}}">
@@ -108,6 +111,9 @@
                                 @method('PUT')
                                 <label for="prijs" value="{{ $joint->prijs }} class="text-white">Price (€)</label>
                                 <input type="text" class="text-black" name="prijs" value="{{ $joint->prijs }}" min="0" required>
+
+                                <label for="gram" value="{{ $joint->prijs }} class="text-white">Gram (G)</label>
+                                <input type="text" class="text-black" name="gram" value="{{ $joint->gram }}" min="0" required>
 
                                 <button type="submit" class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black">Update Joint</button>
                             </form>
