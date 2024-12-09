@@ -23,7 +23,7 @@
     <div class="container rounded mx-auto w-5/6 m-5 bg-gray-800 text-white">
         <div class="p-2">
             @foreach($strains as $strain)
-                <div class="p-2 mb-2 bg-gray-600 hover:bg-gray-700 strain">
+                <div id="strain-{{$strain->id}}" class="p-2 mb-2 bg-gray-600 hover:bg-gray-700 strain">
                     <p class="font-bold">{{$strain->naam}} - {{$strain->merk}} - {{$strain->soort}} - {{$strain->thc}}% THC - {{$strain->cbd}}% CBD - €{{$strain->prijs}}</p>
 
                     <div class="buttoncontainer flex">

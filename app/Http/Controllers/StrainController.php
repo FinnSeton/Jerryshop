@@ -12,6 +12,15 @@ class StrainController extends Controller
         $aantalstrains = Strain::all();
         return view('strains.index', ['strains' => $aantalstrains]);
     }
+    public function showDashboard()
+    {
+        $ids = [1, 2, 3, 4, 5, 9]; 
+    
+        $aantalstrains = Strain::whereIn('id', $ids)->get();
+    
+        return view('dashboard', ['strains' => $aantalstrains]);
+    }
+
 
     public function create()
     {
