@@ -14,10 +14,10 @@ class StrainController extends Controller
     }
     public function showDashboard()
     {
-        $ids = [1, 2, 3, 4, 5, 9]; 
-    
+        $ids = [1, 2, 3, 4, 5, 9];
+
         $aantalstrains = Strain::whereIn('id', $ids)->get();
-    
+
         return view('dashboard', ['strains' => $aantalstrains]);
     }
 
@@ -92,4 +92,50 @@ class StrainController extends Controller
 
         return redirect()->route('strains.all')->with('success', 'Strain deleted successfully.');
     }
+
+    public function sort(Request $request)
+    {
+
+        $sortOption = $request->input('sort', 'price_asc');
+
+
+        $query = Strain::query();
+
+        switch ($sortOption) {
+            case 'price_asc':
+                $query->orderBy('prijs', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('prijs', 'desc');
+                break;
+            case 'thc_asc':
+                $query->orderBy('thc', 'asc');
+                break;
+            case 'thc_desc':
+                $query->orderBy('thc', 'desc');
+                break;
+            case 'cbd_asc':
+                $query->orderBy('cbd', 'asc');
+                break;
+            case 'cbd_desc':
+                $query->orderBy('cbd', 'desc');
+                break;
+            case 'name_asc':
+                $query->orderBy('naam', 'asc');
+                break;
+            case 'name_desc':
+                $query->orderBy('naam', 'desc');
+                break;
+            default:
+                $query->orderBy('prijs', 'asc');
+                break;
+        }
+
+
+        $strains = $query->get();
+
+
+        return view('strains.index', compact('strains'));
+    }
+
 }

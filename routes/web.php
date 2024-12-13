@@ -17,7 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/strains/all', [StrainController::class, 'index'])->name('strains.all');
 
@@ -29,3 +29,5 @@ Route::post('/joints/store', [JointController::class, 'store'])->name('joint.sto
 Route::delete('/joints/delete/{joint}', [JointController::class, 'delete'])->name('joint.delete');
 Route::put('/strain/edit/{id}', [StrainController::class, 'update'])->name('strain.update');
 Route::put('/joint/update/{id}', [JointController::class, 'update'])->name('joint.update');
+Route::get('/strains/sort', [StrainController::class, 'sort'])->name('strain.sort');
+
