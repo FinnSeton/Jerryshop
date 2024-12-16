@@ -16,16 +16,15 @@
                 </div>
                 <div id="items" class="text-lg">
 
-                <!--item code -->
-
-                <!-- <div class="p-2 m-2 bg-gray-600 hover:bg-gray-700">
-                    <a href="{{ route('strain.index', $strain->id) }}" class=" float-right mt-3 text-white border-2 rounded border-white hover:bg-white hover:text-black py-2 px-4 inline-block">
-                        More Details
-                    </a>
-                    <p class="font-semibold ">{{ $strain->naam }}</p>
-                    <p class="text-gray-300">Brand : {{ $strain->merk }}</p>
-                    <p class="text-gray-300">€{{ $strain->prijs }}</p>
-                </div> -->
+                    <div class="p-2 m-2 bg-gray-600">
+                        <div class="float-right">
+                            <label for="quantity" class="text-gray-300">Quantity:</label>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" class="bg-gray-500 text-white border border-gray-400 rounded-md p-1 ml-2 w-12">
+                        </div>
+                        <p class="font-semibold ">Wedding Cake</p>
+                        <p class="text-gray-300">Brand : Candelaar</p>
+                        <p class="text-gray-300">€6.50</p>
+                    </div>
 
 
 
