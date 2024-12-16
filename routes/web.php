@@ -3,6 +3,7 @@
 use App\Http\Controllers\JointController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrainController;
+use App\Http\Controllers\WinkelwagenController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,4 +31,6 @@ Route::delete('/joints/delete/{joint}', [JointController::class, 'delete'])->nam
 Route::put('/strain/edit/{id}', [StrainController::class, 'update'])->name('strain.update');
 Route::put('/joint/update/{id}', [JointController::class, 'update'])->name('joint.update');
 Route::get('/strains/sort', [StrainController::class, 'sort'])->name('strain.sort');
+Route::get('/winkelwagen', [WinkelwagenController::class, 'index'])->name('winkelwagen');
+
 
