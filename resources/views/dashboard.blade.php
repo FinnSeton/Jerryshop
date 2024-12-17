@@ -17,7 +17,7 @@
                 <div class="text-lg">
                     @foreach($strains as $strain)
                         <div class="p-2 m-2 bg-gray-600 hover:bg-gray-700">
-                            <a href="{{ route('strain.index', $strain->id) }}" 
+                            <a href="{{ route('strain.detail', $strain->id) }}" 
                                class=" float-right mt-3 text-white border-2 rounded border-white hover:bg-white hover:text-black py-2 px-4 inline-block">
                                 More Details
                             </a>

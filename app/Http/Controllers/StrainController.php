@@ -43,8 +43,15 @@ class StrainController extends Controller
         return redirect()->route('strains.all')->with('success', 'Strain created successfully.');
     }
 
-    public function show(Strain $strain)
+    public function show($id)
     {
+        $foundstrain = Strain::find($id);
+
+        if (!$foundstrain) {
+            return redirect()->route('strains.all')->with('error', 'Strain not found.');
+        }
+    
+        return view('strains.detail', compact('foundstrain'));
     }
 
     public function edit($id)

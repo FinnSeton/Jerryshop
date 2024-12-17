@@ -10,8 +10,8 @@
 
 @section('content')
 
-    <div class="straininpbox">
-        <form class="mt-5 flex flex-col container mx-auto sm" action='/strains/store' method='POST'>
+    <div class="container rounded mx-auto w-5/6 m-5 bg-gray-800 p-2 straininpbox">
+        <form class="flex flex-col " action='/strains/store' method='POST'>
             @csrf
             <label class="text-white" for='naam'>Vul strain naam in</label>
             <input type='text' name='naam'>
@@ -48,7 +48,7 @@
                 @error('prijs')
                     <p class="text-red">Ongeldige invoer.</p>
                 @enderror
-            <input class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black" type='submit'>
+            <input class="mt-5 text-white border-2 rounded border-white hover:border-black hover:bg-white hover:text-black hover:cursor-pointer" type='submit'>
         </form>
     </div>
 @endsection

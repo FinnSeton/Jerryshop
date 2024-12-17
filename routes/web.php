@@ -32,5 +32,6 @@ Route::put('/strain/edit/{id}', [StrainController::class, 'update'])->name('stra
 Route::put('/joint/update/{id}', [JointController::class, 'update'])->name('joint.update');
 Route::get('/strains/sort', [StrainController::class, 'sort'])->name('strain.sort');
 Route::get('/winkelwagen', [WinkelwagenController::class, 'index'])->name('winkelwagen');
+Route::get('/strains/{id}', [StrainController::class, 'show'])->name('strain.detail');
 
 

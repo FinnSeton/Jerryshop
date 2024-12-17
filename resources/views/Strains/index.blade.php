@@ -13,7 +13,6 @@
         .edit-joint-form {
             display: none;
         }
-
     </style>
 @endpush
 
@@ -23,11 +22,12 @@ Hier staan alle Strains
 
 @section('content')
 <div class="container rounded mx-auto w-5/6 m-5 bg-gray-800 text-white">
-    <div class="">
+    <div class="p-2">
         <form class="w-fit" method="GET" action="{{ route('strain.sort') }}">
             <select name="sort" id="sort" class="text-black">
                 <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price Ascending</option>
-                <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price Descending</option>
+                <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price Descending
+                </option>
                 <option value="thc_asc" {{ request('sort') == 'thc_asc' ? 'selected' : '' }}>THC Ascending</option>
                 <option value="thc_desc" {{ request('sort') == 'thc_desc' ? 'selected' : '' }}>THC Descending</option>
                 <option value="cbd_asc" {{ request('sort') == 'cbd_asc' ? 'selected' : '' }}>CBD Ascending</option>
@@ -60,10 +60,16 @@ Hier staan alle Strains
                         Make Joint
                     </button>
 
-                    <button id="edit-strain-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-blue-500"
+                    <button id="edit-strain-button-{{$strain->id}}" class="border pr-2 pl-2 mr-2 rounded border-blue-500"
                         onclick="toggleEditForm({{$strain->id}})">
                         Edit Strain
                     </button>
+
+                    <button id="edit-strain-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-white-"onclick="window.location='{{ route('strain.detail', $strain->id) }}'">
+                        More Info
+                    </button>
+
+
                 </div>
 
 
