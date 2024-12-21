@@ -32,23 +32,19 @@
                     </div>
 
                     <div class="col-span-1 min-h-[200px] max-h-[700px] rounded-xl shadow-lg">
-                        <div class="bg-gray-800 rounded-t-xl p-4">
-                            <p class="font-semibold text-2xl text-white">@yield('strainname')</p>
+                      
+                        <div class="bg-gray-800 flex rounded-t-xl p-4">
+                            <p class=" text-xl text-white">€@yield('price'),-</p>
+                            <p class="text-sm self-center pl-2">Per Gram</p>
                         </div>
                         <div class="bg-gray-700 p-4">
-                            <p class="font-semibold text-2xl text-white"> @yield('brand')</p>
+                            <p class=" text-xl text-white">@yield('type')</p>
                         </div>
                         <div class="bg-gray-800 p-4">
-                            <p class="font-semibold text-2xl text-white">€@yield('price')</p>
+                            <p class=" text-l text-white">THC @yield('thc')%</p>
                         </div>
                         <div class="bg-gray-700 p-4">
-                            <p class="font-semibold text-2xl text-white">@yield('type')</p>
-                        </div>
-                        <div class="bg-gray-800 p-4">
-                            <p class="font-semibold text-2xl text-white">THC @yield('thc')%</p>
-                        </div>
-                        <div class="bg-gray-700 p-4">
-                            <p class="font-semibold text-2xl text-white">CBD @yield('cbd')%</p>
+                            <p class=" text-l text-white">CBD @yield('cbd')%</p>
                         </div>
                         <div class="bg-gray-800 p-6">
                             <button type="addcart" class="border pr-2 pl-2 mr-2 rounded border-white text-xl font-semibold hover:bg-gray-700">Toevoegen aan winkelwagen</button>
