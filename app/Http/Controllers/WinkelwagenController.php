@@ -2,64 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Winkelwagen;
 use Illuminate\Http\Request;
+use App\Models\Winkelwagen;
 
 class WinkelwagenController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Toon de winkelwagenpagina.
      */
     public function index()
     {
-        return view('winkelwagen');
+        $items = Winkelwagen::all();
+        $total = $items->sum(function ($item) {
+            return $item->price * $item->quantity;
+        });
+
+        return view('winkelwagen', [
+            'items' => $items,
+            'total' => $total,
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Voeg een nieuw item toe aan de winkelwagen.
      */
-    public function create()
+    public function add(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'brand' => 'nullable|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        Winkelwagen::create($validated);
+
+        return redirect()->route('winkelwagen.index')->with('success', 'Item toegevoegd aan de winkelwagen.');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Update de hoeveelheid van een item.
      */
-    public function store(Request $request)
+    public function update(Request $request, Winkelwagen $cartItem)
     {
-        //
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $cartItem->update($validated);
+
+        return redirect()->route('winkelwagen.index')->with('success', 'Hoeveelheid bijgewerkt.');
     }
 
     /**
-     * Display the specified resource.
+     * Verwijder een item uit de winkelwagen.
      */
-    public function show(Winkelwagen $winkelwagen)
+    public function remove(Winkelwagen $cartItem)
     {
-        //
-    }
+        $cartItem->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Winkelwagen $winkelwagen)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Winkelwagen $winkelwagen)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Winkelwagen $winkelwagen)
-    {
-        //
+        return redirect()->route('winkelwagen.index')->with('success', 'Item verwijderd.');
     }
 }
