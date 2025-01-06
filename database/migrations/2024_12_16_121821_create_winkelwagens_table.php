@@ -11,12 +11,14 @@ class CreateWinkelwagensTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('winkelwagens', function (Blueprint $table) {
+        Schema::create('winkelwagen', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('brand')->nullable();
-            $table->decimal('price', 8, 2);
-            $table->integer('quantity');
+            $table->string('naam');
+            $table->string('merk');
+            $table->string('soort');
+            $table->integer('thc');
+            $table->integer('cbd');
+            $table->decimal('prijs');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateWinkelwagensTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('winkelwagens');
+        Schema::dropIfExists('winkelwagen');
     }
 }

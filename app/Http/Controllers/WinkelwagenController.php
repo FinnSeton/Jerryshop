@@ -2,65 +2,73 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Strain;
 use Illuminate\Http\Request;
 use App\Models\Winkelwagen;
 
 class WinkelwagenController extends Controller
 {
-    /**
-     * Toon de winkelwagenpagina.
-     */
     public function index()
     {
-        $items = Winkelwagen::all();
-        $total = $items->sum(function ($item) {
-            return $item->price * $item->quantity;
-        });
+        // Retrieve cart items from session or database
+        $cartItems = session()->get('cart', []);
 
-        return view('winkelwagen', [
-            'items' => $items,
-            'total' => $total,
-        ]);
+        return view('winkelwagen', compact('cartItems'));
     }
 
-    /**
-     * Voeg een nieuw item toe aan de winkelwagen.
-     */
     public function add(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'brand' => 'nullable|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|integer|min:1',
-        ]);
+        $cart = session()->get('cart', []);
 
-        Winkelwagen::create($validated);
+        // Voeg het product toe aan de winkelwagen
+        $cart[] = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => 1, // Standaard één item toevoegen
+            'type' => $request->type,
+            'thc' => $request->thc,
+            'cbd' => $request->cbd,
+        ];
 
-        return redirect()->route('winkelwagen.index')->with('success', 'Item toegevoegd aan de winkelwagen.');
+        // Bewaar de winkelwagen in de sessie
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Product toegevoegd aan winkelwagen!');
     }
 
-    /**
-     * Update de hoeveelheid van een item.
-     */
-    public function update(Request $request, Winkelwagen $cartItem)
+    public function update(Request $request, $cartItemId)
     {
-        $validated = $request->validate([
-            'quantity' => 'required|integer|min:1',
-        ]);
+        $cart = session()->get('cart', []);
 
-        $cartItem->update($validated);
+        foreach ($cart as $key => $item) {
+            if ($item['id'] == $cartItemId) {
+                $cart[$key]['quantity'] = $request->quantity;
+                break;
+            }
+        }
 
-        return redirect()->route('winkelwagen.index')->with('success', 'Hoeveelheid bijgewerkt.');
+        session()->put('cart', $cart);
+
+        return redirect()->route('winkelwagen.index');
     }
 
-    /**
-     * Verwijder een item uit de winkelwagen.
-     */
-    public function remove(Winkelwagen $cartItem)
+    public function remove($cartItemId)
     {
-        $cartItem->delete();
+        $cart = session()->get('cart', []);
 
-        return redirect()->route('winkelwagen.index')->with('success', 'Item verwijderd.');
+        $cart = array_filter($cart, function ($item) use ($cartItemId) {
+            return $item['id'] !== $cartItemId;
+        });
+
+        session()->put('cart', array_values($cart));
+
+        return redirect()->route('winkelwagen.index');
     }
+    public function show($id)
+    {
+        $foundstrain = Strain::find($id);
+        return view('winkelwagen.index', compact('foundstrain'));
+    }
+
 }

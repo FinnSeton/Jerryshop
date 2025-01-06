@@ -15,21 +15,26 @@
                     <p class="font-semibold text-2xl text-white">Huidige items</p>
                 </div>
                 <div id="items" class="text-lg">
-
-                    <div class="p-2 m-2 bg-gray-600">
-                        <div class="float-right">
-                            <label for="quantity" class="text-gray-300">Quantity:</label>
-                            <input type="number" id="quantity" name="quantity" value="1" min="1" class="bg-gray-500 text-white border border-gray-400 rounded-md p-1 ml-2 w-12">
+                    @foreach($cartItems as $item)
+                        <div class="p-2 m-2 bg-gray-600">
+                            <div class="float-right">
+                                <form action="{{ route('winkelwagen.update', $item['id']) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <label for="quantity" class="text-gray-300">Quantity:</label>
+                                    <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" class="bg-gray-500 text-white border border-gray-400 rounded-md p-1 ml-2 w-12">
+                                    <button type="submit" class="ml-2 bg-green-500 text-white p-1 rounded">Update</button>
+                                </form>
+                            </div>
+                            <p class="font-semibold">{{ $item['name'] }}</p>
+                            <p class="text-gray-300">€{{ number_format($item['price'], 2) }}</p>
+                            <form action="{{ route('winkelwagen.remove', $item['id']) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-white p-2 rounded mt-2">Remove</button>
+                            </form>
                         </div>
-                        <p class="font-semibold ">Wedding Cake</p>
-                        <p class="text-gray-300">Brand : Candelaar</p>
-                        <p class="text-gray-300">€6.50</p>
-                    </div>
-
-
-
-
-
+                    @endforeach
                 </div>
             </div>
 
@@ -42,7 +47,7 @@
 
 
 
-                        
+
                     </div>
                 </div>
 
@@ -52,9 +57,15 @@
                     </div>
                     <div id="total" class="p-4 text-lg text-gray-300">
 
+                        <div id="total" class="p-4 text-lg text-gray-300">
+                            <p class="font-semibold">Total: €{{ number_format(array_reduce($cartItems, fn($sum, $item) => $sum + ($item['price'] * $item['quantity']), 0), 2) }}</p>
+                        </div>
 
 
-                        
+
+
+
+
                     </div>
                 </div>
             </div>

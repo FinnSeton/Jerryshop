@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="col-span-1 min-h-[200px] max-h-[700px] rounded-xl shadow-lg">
-                      
+
                         <div class="bg-gray-800 flex rounded-t-xl p-4">
                             <p class=" text-xl text-white">€@yield('price'),-</p>
                             <p class="text-sm self-center pl-2">Per Gram</p>
@@ -47,10 +47,24 @@
                             <p class=" text-l text-white">CBD @yield('cbd')%</p>
                         </div>
                         <div class="bg-gray-800 p-6">
-                            <button type="addcart" class="border pr-2 pl-2 mr-2 rounded border-white text-xl font-semibold hover:bg-gray-700">Toevoegen aan winkelwagen</button>
-                            
+
+                            @if($foundstrain)
+                                <form action="{{ route('winkelwagen.add') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $foundstrain->id }}">
+                                    <input type="hidden" name="name" value="{{ $foundstrain->naam }}">
+                                    <input type="hidden" name="price" value="{{ $foundstrain->prijs }}">
+                                    <input type="hidden" name="type" value="{{ $foundstrain->soort }}">
+                                    <input type="hidden" name="thc" value="{{ $foundstrain->thc }}">
+                                    <input type="hidden" name="cbd" value="{{ $foundstrain->cbd }}">
+                                    <button type="submit" class="border pr-2 pl-2 mr-2 rounded border-white text-xl font-semibold hover:bg-gray-700">
+                                        Toevoegen aan winkelwagen
+                                    </button>
+                                </form>
+                            @endif
                         </div>
-                        
+
+
                     </div>
 
                 </div>

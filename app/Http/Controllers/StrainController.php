@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Strain;
 use Illuminate\Http\Request;
 
+
 class StrainController extends Controller
 {
     public function index()
@@ -50,7 +51,7 @@ class StrainController extends Controller
         if (!$foundstrain) {
             return redirect()->route('strains.all')->with('error', 'Strain not found.');
         }
-    
+
         return view('strains.detail', compact('foundstrain'));
     }
 

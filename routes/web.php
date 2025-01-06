@@ -48,6 +48,8 @@ Route::prefix('winkelwagen')->middleware(['auth'])->group(function () {
     Route::post('/add', [WinkelwagenController::class, 'add'])->name('winkelwagen.add');
     Route::put('/update/{cartItem}', [WinkelwagenController::class, 'update'])->name('winkelwagen.update');
     Route::delete('/remove/{cartItem}', [WinkelwagenController::class, 'remove'])->name('winkelwagen.remove');
+
+
 });
 
 // Auth routes
