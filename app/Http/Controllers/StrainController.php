@@ -19,7 +19,10 @@ class StrainController extends Controller
 
         $aantalstrains = Strain::whereIn('id', $ids)->get();
 
-        return view('dashboard', ['strains' => $aantalstrains]);
+        $recentProducts = Strain::orderBy('created_at', 'desc')->take(6)->get();
+
+
+        return view('dashboard', ['strains' => $aantalstrains],  compact('recentProducts'));
     }
 
 
