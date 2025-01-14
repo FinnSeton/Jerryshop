@@ -65,7 +65,7 @@ Hier staan alle Strains
                         Edit Strain
                     </button>
 
-                    <button id="edit-strain-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-white-"onclick="window.location='{{ route('strain.detail', $strain->id) }}'">
+                    <button id="edit-strain-button-{{$strain->id}}" class="border pr-2 pl-2 rounded border-white" onclick="window.location='{{ route('strain.detail', $strain->id) }}'">
                         More Info
                     </button>
 
