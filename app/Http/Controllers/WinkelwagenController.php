@@ -4,37 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Strain;
 use Illuminate\Http\Request;
-use App\Models\Winkelwagen;
 
 class WinkelwagenController extends Controller
 {
     public function index()
     {
-        // Retrieve cart items from session or database
         $cartItems = session()->get('cart', []);
-
         return view('winkelwagen', compact('cartItems'));
     }
 
     public function add(Request $request)
     {
         $cart = session()->get('cart', []);
+        $found = false;
 
-        // Voeg het product toe aan de winkelwagen
-        $cart[] = [
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => 1, // Standaard één item toevoegen
-            'type' => $request->type,
-            'thc' => $request->thc,
-            'cbd' => $request->cbd,
-        ];
+        foreach ($cart as $key => $item) {
+            if ($item['id'] == $request->id) {
+                $cart[$key]['quantity'] += 1;
+                $found = true;
+                break;
+            }
+        }
 
-        // Bewaar de winkelwagen in de sessie
+        if (!$found) {
+            $cart[] = [
+                'id' => $request->id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => 1,
+                'type' => $request->type,
+                'thc' => $request->thc,
+                'cbd' => $request->cbd,
+            ];
+        }
+
         session()->put('cart', $cart);
-
-        return redirect()->back()->with('success', 'Product toegevoegd aan winkelwagen!');
+        return redirect()->route('winkelwagen.index')->with('success', 'Product toegevoegd aan winkelwagen!');
     }
 
     public function update(Request $request, $cartItemId)
@@ -49,7 +54,6 @@ class WinkelwagenController extends Controller
         }
 
         session()->put('cart', $cart);
-
         return redirect()->route('winkelwagen.index');
     }
 
@@ -62,13 +66,12 @@ class WinkelwagenController extends Controller
         });
 
         session()->put('cart', array_values($cart));
-
         return redirect()->route('winkelwagen.index');
     }
+
     public function show($id)
     {
         $foundstrain = Strain::find($id);
         return view('winkelwagen.index', compact('foundstrain'));
     }
-
 }
